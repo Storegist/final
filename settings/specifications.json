@@ -1,0 +1,208 @@
+{
+  "description": {
+    "X": [
+      "Product_Collection",
+      "Processor_Number",
+      "Status",
+      "Launch_Date",
+      "Lithography",
+      "Recommended_Customer_Price",
+      "nb_of_Cores",
+      "nb_of_Threads",
+      "Processor_Base_Frequency",
+      "Max_Turbo_Frequency",
+      "Cache",
+      "Bus_Speed",
+      "TDP",
+      "Embedded_Options_Available",
+      "Conflict_Free",
+      "Max_Memory_Size",
+      "Memory_Types",
+      "Max_nb_of_Memory_Channels",
+      "Max_Memory_Bandwidth",
+      "ECC_Memory_Supported",
+      "Processor_Graphics_",
+      "Graphics_Base_Frequency",
+      "Graphics_Max_Dynamic_Frequency",
+      "Graphics_Video_Max_Memory",
+      "Graphics_Output",
+      "Support_4k",
+      "Max_Resolution_HDMI",
+      "Max_Resolution_DP",
+      "Max_Resolution_eDP_Integrated_Flat_Panel",
+      "DirectX_Support",
+      "OpenGL_Support",
+      "PCI_Express_Revision",
+      "PCI_Express_Configurations_",
+      "Max_nb_of_PCI_Express_Lanes",
+      "T",
+      "Intel_Hyper_Threading_Technology_",
+      "Intel_Virtualization_Technology_VTx_",
+      "Intel_64_",
+      "Instruction_Set",
+      "Instruction_Set_Extensions",
+      "Idle_States",
+      "Thermal_Monitoring_Technologies",
+      "Secure_Key",
+      "Execute_Disable_Bit"
+    ],
+    "final_columns": [
+      "Product_Collection",
+      "Status",
+      "Lithography",
+      "Recommended_Customer_Price",
+      "nb_of_Cores",
+      "nb_of_Threads",
+      "Processor_Base_Frequency",
+      "TDP",
+      "Embedded_Options_Available",
+      "Conflict_Free",
+      "Max_Memory_Size",
+      "Max_nb_of_Memory_Channels",
+      "Max_Memory_Bandwidth",
+      "ECC_Memory_Supported",
+      "PCI_Express_Revision",
+      "Max_nb_of_PCI_Express_Lanes",
+      "T",
+      "Intel_Hyper_Threading_Technology_",
+      "Intel_Virtualization_Technology_VTx_",
+      "Instruction_Set",
+      "Idle_States",
+      "Thermal_Monitoring_Technologies",
+      "Execute_Disable_Bit"
+    ],
+    "y": "Vertical_Segment",
+    "metrics": "accuracy_score"
+  },
+  "operations": [
+    {
+      "operation_number": 1,
+      "operation_name": "drop_columns",
+      "params": {
+        "in_columns": [
+          "Processor_Number",
+          "Launch_Date",
+          "Max_Turbo_Frequency",
+          "Processor_Graphics_",
+          "Graphics_Base_Frequency",
+          "Graphics_Max_Dynamic_Frequency",
+          "Graphics_Video_Max_Memory",
+          "Graphics_Output",
+          "Support_4k",
+          "Max_Resolution_HDMI",
+          "Max_Resolution_DP",
+          "Max_Resolution_eDP_Integrated_Flat_Panel",
+          "DirectX_Support",
+          "OpenGL_Support",
+          "PCI_Express_Configurations_",
+          "Secure_Key",
+          "Cache",
+          "Bus_Speed",
+          "Memory_Types",
+          "Instruction_Set_Extensions"
+        ]
+      }
+    },
+    {
+      "operation_number": 2,
+      "operation_name": "fill_nans",
+      "params": {
+        "in_columns": [
+          "Recommended_Customer_Price"
+        ],
+        "methods": [
+          "mode"
+        ]
+      }
+    },
+    {
+      "operation_number": 3,
+      "operation_name": "encode_labels",
+      "params": {
+        "in_columns": [
+          "Instruction_Set",
+          "Product_Collection",
+          "Lithography",
+          "Intel_64_",
+          "Embedded_Options_Available",
+          "Conflict_Free",
+          "ECC_Memory_Supported",
+          "Intel_Hyper_Threading_Technology_",
+          "Intel_Virtualization_Technology_VTx_",
+          "Idle_States",
+          "Thermal_Monitoring_Technologies",
+          "Execute_Disable_Bit"
+        ]
+      }
+    },
+    {
+      "operation_number": 4,
+      "operation_name": "fill_nans",
+      "params": {
+        "in_columns": [
+          "TDP",
+          "Max_nb_of_Memory_Channels",
+          "Max_Memory_Size",
+          "Max_Memory_Bandwidth",
+          "PCI_Express_Revision",
+          "Max_nb_of_PCI_Express_Lanes",
+          "T",
+          "Instruction_Set",
+          "Intel_64_"
+        ],
+        "methods": [
+          "mode",
+          "mode",
+          "mode",
+          "mode",
+          "mode",
+          "mode",
+          "mode",
+          "mode",
+          "mode"
+        ]
+      }
+    },
+    {
+      "operation_number": 5,
+      "operation_name": "columns_combination",
+      "params": {
+        "in_columns_list": [
+          "Instruction_Set",
+          "Intel_64_"
+        ],
+        "out_columns": [
+          "Instruction_Set"
+        ],
+        "methods": [
+          "addition"
+        ],
+        "coefficients_list": [
+          1,
+          1
+        ],
+        "biases": [
+          1
+        ]
+      }
+    },
+    {
+      "operation_number": 6,
+      "operation_name": "normalize",
+      "params": {
+        "in_columns": [
+          "Instruction_Set"
+        ]
+      }
+    },
+    {
+      "operation_number": 7,
+      "operation_name": "drop_columns",
+      "params": {
+        "in_columns": [
+          "Intel_64_"
+        ]
+      }
+    }
+  ]
+}
